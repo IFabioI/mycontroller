@@ -17,7 +17,7 @@
 myControllerModule.controller('DashboardListController', function(alertService,
 $scope, $filter, $location, $uibModal, $stateParams, $state, displayRestError, DashboardFactory, mchelper, CommonServices) {
   $scope.dId;
-  $scope.dashboards ={};
+  $scope.dashboards = {};
   $scope.showLoading = false;
   $scope.showLoadingMain = false;
   $scope.mchelper = mchelper;

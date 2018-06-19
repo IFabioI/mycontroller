@@ -35,10 +35,10 @@ public class CalendarSensorsDaoImpl extends BaseAbstractDaoImpl<CalendarSensors,
         return super.getAll(CalendarSensors.KEY_CALENDAR_ID, calendarId);
     }
 
-    @Override
-    public List<CalendarSensors> getBySensorId(Integer sensorId) {
-        return super.getAll(CalendarSensors.KEY_SENSOR_ID, sensorId);
-    }
+//    @Override
+//    public List<CalendarSensors> getBySensorId(Integer sensorId) {
+//        return super.getAll(CalendarSensors.KEY_SENSOR_ID, sensorId);
+//    }
 
     @Override
     public void deleteBySensorId(Integer sensorId) {

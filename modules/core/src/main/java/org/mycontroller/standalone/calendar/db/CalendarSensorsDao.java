@@ -8,9 +8,9 @@ import org.mycontroller.standalone.db.tables.CalendarSensors;
 
 public interface CalendarSensorsDao extends BaseDao<CalendarSensors, Object> {
 
-    List<OperationTimerMap> getByCalendarId(Integer calendarId);
+    List<CalendarSensors> getByCalendarId(Integer calendarId);
 
-    List<OperationTimerMap> getBySensorId(Integer sensorId);
+    //List<CalendarSensors> getBySensorId(Integer sensorId);
 
     void deleteByCalendarId(Integer calendarId);
 
