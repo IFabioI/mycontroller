@@ -61,8 +61,7 @@ public class BaseCalendar {
 				break;
 			case "openCalendarDay":
 				//arrumar
-				long daytime = Long.parseLong(tokens[1]);
-				day = calendar.getDay(daytime);
+				day = calendar.getDay(token[1]);
 				int activationSize = day.getActivationAmount();
 				actor.sendMessage("" + activationSize);
 				for(int i = 0; i < activationSize; i++)
