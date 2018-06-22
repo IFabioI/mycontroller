@@ -1,0 +1,32 @@
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.LinkedList;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import junit.framework.TestCase;
+
+public class CalendarTest extends TestCase {
+	
+	@Before
+	public void testName() {
+		Calendar.setName("calendar0");
+		assertEquals("calendar0", Calendar.getName());
+	}
+	
+	@Test
+	public void testAddSensor() {
+		Sensor sensor0;
+		sensor0 = new Sensor();
+
+		Calendar.addSensor(sensor0);
+		assertEquals(Calendar.sensors[Calendar.sensors.size()-1], sensor0);
+	}
+	
+	@Test
+	public void testConstructor() {
+		Calendar.Calendar("calendario0");
+		assertEquals("calendar0", Calendar.getName());		
+	}	
+}
