@@ -10,7 +10,7 @@ public class Actor {
 	
 	private static LinkedList<String> messages = new LinkedList<String>;
 	
-	public static void main(String[] args) {
+	public static void run() {
 		sc = new Scanner(System.in);
 		
 		Date currenttime = new Date();
@@ -24,7 +24,7 @@ public class Actor {
 			
 			switch(inputTokens[0]) {
 				case "createCalendar":
-					baseCalendar.request(usrInput);
+					baseCalendar.request("newCalendar");
 					String response = Listen();
 					String id = response.split(" ")[0];
 					String name = response.split(" ")[1];
@@ -34,7 +34,7 @@ public class Actor {
 					String name = inputTokens[1];
 					if(areYouSure(name))
 						//name
-						baseCalendar.request(usrInput);
+						baseCalendar.request("deleteCalendar " + inputTokens[1]);
 					System.out.println("calendar " + name + " removed");
 					break;
 				case "editCalendarName":
@@ -59,6 +59,18 @@ public class Actor {
 						Date time = new Date(Long.parseLong(response.split(" ")[1]));
 						System.out.println("sensor " + sensorname + " activated on " + time.getDate() + "/" + time.getMonth() + "/" + (time.getYear() + 1900) + " " + time.getHours() + ":" + time.getMinutes + ":" + time.getSeconds + " id: " + i);
 					}
+					break;
+				case "addSensor":
+					baseCalendar.request(usrInput);
+					System.out.println("sensor added");
+					break;
+				case "deleteSensor":
+					baseCalendar.request(usrInput);
+					System.out.println("sensor deleted");
+					break;
+				case "deleteActivation":
+					baseCalendar.request(usrInput);
+					System.out.println("activation deleted");
 					break;
 				case "help":
 					showOptions();
@@ -87,7 +99,10 @@ public class Actor {
 				+ "calendar's old name with a new name");
 		System.out.println("openCalendar [name] - opens calendar of name [name]");
 		System.out.println("openCalendarDay [day] - opens visualization of "
-				+ "a specific day [day]");
+				+ "a specific day [day] of current opened calendar");
+		System.out.println("addSensor [index] - add sensor at position index to current opened calendar");
+		System.out.println("deleteSensor [index] - remove sensor at position index of calendar's list of sensors");
+		System.out.println("deleteActivation [index] - remove activation at position index of current opened day");
 		System.out.println("exit - exit system");
 	}
 	
