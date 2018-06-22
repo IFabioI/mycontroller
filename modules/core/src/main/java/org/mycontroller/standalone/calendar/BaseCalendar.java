@@ -97,7 +97,12 @@ public class BaseCalendar {
 		for(index = 0 ; index < calendars.size(); index++)
 		{
 			if(calendars[index].checkSensors(sensor))
-				System.out.println("Sensor " + sensor.KEY_NAME + " activated on time " + milis);
+			{
+				Date date = new Date(milis);
+				String day = "" + (date.getYear() + 1900) + date.getMonth() + date.getDate();
+				SensorActivation activation = new SensorActivation(sensor.KEY_NAME,milis);
+				calendars[index].getDay(day).addActivation(activation);
+			}
 		}
 	}
 
