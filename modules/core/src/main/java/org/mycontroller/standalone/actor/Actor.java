@@ -8,8 +8,11 @@ public class Actor {
 	private static Scanner sc;
 	private static Scanner sc2;
 	
+	private static LinkedList<String> messages = new LinkedList<String>;
+	
 	public static void main(String[] args) {
 		sc = new Scanner(System.in);
+		
 		String usrInput;
 		
 		do {
@@ -20,8 +23,8 @@ public class Actor {
 					baseCalendar.request(usrInput);
 					break;
 				case "removeCalendar":
-				String name = usrInput.split(" ")[1];
-				if(areYouSure(name))
+					String name = usrInput.split(" ")[1];
+					if(areYouSure(name))
 						//name
 						baseCalendar.request(usrInput);
 					break;
@@ -77,5 +80,18 @@ public class Actor {
 			if(usrInput == "y") return true;
 			else if (usrInput == "n") return false;
 		}
+	}
+	
+	private static String listen()
+	{
+		while(messages.size() == 0);
+		String ret = messages.getFirst();
+		messages.removeFirst();
+		return ret;
+	}
+	
+	public static void sendMessage(String message)
+	{
+		messages.push(message);
 	}
 }
