@@ -7,20 +7,26 @@ import org.mycontroller.standalone.db.tables.Timer;
 
 public class BaseCalendar {
 
-	private LinkedList<Calendar> calendars;
+	private static LinkedList<Calendar> calendars;
 	
-	private int calendarIndex;
-	private Calendar calendar;
-	private CalendarDay day;
+	private static int calendarIndex;
+	private static Calendar calendar;
+	private static CalendarDay day;
+	private static Actor;
+	
+	BaseCalendar(Actor actor)
+	{
+		this.actor = actor;
+	}
 
-	public int request(String request) {
+	public static int request(String request) {
 		String[] tokens = request.split(" ");
 		switch(tokens[0])
 		{
 			case "newCalendar":
 				int index = calendars.size();
 				addCalendar(new Calendar(Integer.toString(index)));
-				//return index to frontend
+				actor.sendMessage("" + index);
 				break;
 			case "openCalendar":
 				if(!getIndexByName(tokens[1]))
@@ -58,18 +64,18 @@ public class BaseCalendar {
 				long daytime = Long.parseLong(tokens[1]);
 				day = calendar.getDay(daytime);
 				int activationSize = day.getActivationAmount();
-				//return activationSize to frontend
+				actor.sendMessage("" + activationSize);
 				for(int i = 0; i < activationSize; i++)
 				{
 					SensorActivation activation = day.getActivation(i);
-					//return activation to frontend
+					actor.sendMessage(activation.getSensorName() + " " + activation.getActivationTime().getTime());
 				}
 				break;
 		}
 		return 0;
 	}
 	
-	private boolean getIndexByName(String name) {
+	private static boolean getIndexByName(String name) {
 		for(int index=0;index < calendars.size();index++) {
 			if(calendars[index].getName() == tokens[1]) {
 				this.calendarIndex = index;
@@ -79,15 +85,15 @@ public class BaseCalendar {
 		return false;
 	}
 
-	public void addCalendar(Calendar cal) {
+	public static void addCalendar(Calendar cal) {
 		calendars.add(cal);
 	}
 
-	public void removeCalendar(int index) {
+	public static void removeCalendar(int index) {
 		calendars.remove(index);
 	}
 
-	public void onTimerActivate(Timer timer) {
+	public static void onTimerActivate(Timer timer) {
 		//timer activation call this function
 	}
 
