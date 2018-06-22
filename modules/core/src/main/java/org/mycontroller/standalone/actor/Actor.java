@@ -4,7 +4,7 @@ import java.util.Scanner;
 import org.mycontroller.standalone.calendar.BaseCalendar;
 
 public class Actor {
-	static BaseCalendar baseCalendar;
+	static BaseCalendar baseCalendar = new baseCalendar(this);
 	private static Scanner sc;
 	private static Scanner sc2;
 	
