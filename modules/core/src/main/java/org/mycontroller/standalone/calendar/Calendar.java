@@ -5,7 +5,7 @@ import java.util.Date;
 public class Calendar {
 
 	private HashMap<String,CalendarDay> daysMap;
-	private LinkedList<Timer> timers;
+	private LinkedList<Sensor> sensors;
 	private String name;
 	
 	Calendar(String name){
@@ -28,15 +28,28 @@ public class Calendar {
 
 	}
 
-	public void addTimer(Timer timer) {
-		this.timers.add(timer);
+	public void addSensor(Sensor sensor) {
+		this.sensors.add(sensor);
 	}
 
-	public void removeTimer() {
-		this.timers.remove(index);
+	public void removeSensor(int index) {
+		this.sensors.remove(index);
+	}
+	
+	public Sensor getSensor(int index)
+	{
+		return sensors.get(index);
+	}
+	
+	public bool checkSensors(Sensor sensor)
+	{
+		int index;
+		for(index = 0 ; index < sensors.size() ; index++)
+		{
+			if(sensors[index] == sensor)
+				return true;
+		}
+		return false;
 	}
 
-	public Sensor getAllTimersByName() {
-		return ;
-	}
 }

@@ -35,6 +35,8 @@ import org.mycontroller.standalone.message.McMessageUtils.MESSAGE_TYPE_STREAM;
 import org.mycontroller.standalone.model.ResourceModel;
 import org.mycontroller.standalone.provider.mycontroller.structs.McFirmwareConfig;
 import org.mycontroller.standalone.provider.mysensors.structs.FirmwareConfigResponse;
+import java.utils.date;
+import org.mycontroller.standalone.calendar.BaseCalendar;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -164,6 +166,7 @@ public class McActionEngine implements IMcActionEngine {
         } else {
             payload = operation.getPayload();
         }
+        BaseCalendar.onSensorActivate(sensorVariable.getSensor(),new Date().getTime());
         message = MessageImpl.builder()
                 .gatewayId(sensorVariable.getSensor().getNode().getGatewayTable().getId())
                 .nodeEui(sensorVariable.getSensor().getNode().getEui())
@@ -179,6 +182,7 @@ public class McActionEngine implements IMcActionEngine {
 
     //Execute Sensor Variable related operations
     private void executeSensorVariableOperationRequestPayload(SensorVariable sensorVariable) {
+    	BaseCalendar.onSensorActivate(sensorVariable.getSensor(),new Date().getTime());
         IMessage message = MessageImpl.builder()
                 .gatewayId(sensorVariable.getSensor().getNode().getGatewayTable().getId())
                 .nodeEui(sensorVariable.getSensor().getNode().getEui())

@@ -92,8 +92,13 @@ public class BaseCalendar {
 		calendars.remove(index);
 	}
 
-	public static void onTimerActivate(Timer timer) {
-		//timer activation call this function
+	public static void onSensorActivate(Sensor sensor, long milis) {
+		int index;
+		for(index = 0 ; index < calendars.size(); index++)
+		{
+			if(calendars[index].checkSensors(sensor))
+				System.out.println("Sensor " + sensor.KEY_NAME + " activated on time " + milis);
+		}
 	}
 
 }
