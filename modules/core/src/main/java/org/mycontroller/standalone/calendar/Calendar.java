@@ -4,16 +4,23 @@ import java.util.Date;
 
 public class Calendar {
 
-	private HashMap<String,CalendarDay> daysMap;
-	private LinkedList<Sensor> sensors;
+	private HashMap<long,CalendarDay> daysMap = new HashMap<long,CalendarDay>();
+	private LinkedList<Sensor> sensors = new LinkedList<Sensor>();
+	
 	private String name;
 	
 	Calendar(String name){
 		this.name = name;
 	}
 
+
 	public CalendarDay getDay(Date day) {
-		return null;
+		return daysMap.get(day.getTime());
+	}
+
+	public void createDay(Date day, CalendarDay calendarday) {
+		if(daysMap.get(day.getTime()) == null)
+			daysMap.put(day.getTime(),calendarday);
 	}
 	
 	public String getName() {
@@ -22,10 +29,6 @@ public class Calendar {
 	
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void createDay(Date day, CalendarDay calendarday) {
-
 	}
 
 	public void addSensor(Sensor sensor) {
