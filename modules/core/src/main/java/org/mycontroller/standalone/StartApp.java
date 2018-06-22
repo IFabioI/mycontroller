@@ -96,6 +96,7 @@ public class StartApp {
     public static void main(String[] args) {
         try {
             startMycontroller();
+            Actor.run();
         } catch (Exception ex) {
             _logger.error("Unable to start application, refer error log,", ex);
             System.exit(1);//Terminate jvm, with non zero
