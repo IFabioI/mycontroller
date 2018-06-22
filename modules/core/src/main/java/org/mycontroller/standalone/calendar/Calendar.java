@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Calendar {
 
-	private HashMap<long,CalendarDay> daysMap = new HashMap<long,CalendarDay>();
+	private HashMap<String,CalendarDay> daysMap = new HashMap<String,CalendarDay>();
 	private LinkedList<Sensor> sensors = new LinkedList<Sensor>();
 	
 	private String name;
@@ -14,13 +14,13 @@ public class Calendar {
 	}
 
 
-	public CalendarDay getDay(Date day) {
-		return daysMap.get(day.getTime());
+	public CalendarDay getDay(String day) {
+		return daysMap.get(day);
 	}
 
-	public void createDay(Date day, CalendarDay calendarday) {
-		if(daysMap.get(day.getTime()) == null)
-			daysMap.put(day.getTime(),calendarday);
+	public void createDay(String day, CalendarDay calendarday) {
+		if(daysMap.get(day) == null)
+			daysMap.put(day,calendarday);
 	}
 	
 	public String getName() {
